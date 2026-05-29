@@ -1,6 +1,2 @@
 #!/bin/bash
-# Translate inputs to base-36, add, and translate back
-val1=$(echo "$WATER" | tr "$water" "0123456789abcdefghijklmnopqrstuvwxyz")
-val2=$(echo "$STIR" | tr "$stir" "0123456789abcdefghijklmnopqrstuvwxyz")
-sum=$((36#$val1 + 36#$val2))
-echo "$sum" | tr "0123456789abcdefghijklmnopqrstuvwxyz" "$bestchol"
+echo $(( $(echo "$WATER" | tr "$water" "0123456789abcdefghijklmnopqrstuvwxyz") + $(echo "$STIR" | tr "$stir" "0123456789abcdefghijklmnopqrstuvwxyz") )) | tr "0123456789abcdefghijklmnopqrstuvwxyz" "$bestchol"
