@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 -c "print(''.join('bestchol'[int(d)] for d in oct(sum('water'.index(c)*5**i for i,c in enumerate('$WATER'[::-1]))+sum('stir'.index(c)*4**i for i,c in enumerate('$STIR'[::-1])))[2:]))"
+python3 -c $'import sys\nw="water"\ns="stir"\nb="bestchol"\nW,S=sys.argv[1],sys.argv[2]\nwd=sum(w.index(c)*5**i for i,c in enumerate(W[::-1]))\nsd=sum(s.index(c)*4**i for i,c in enumerate(S[::-1]))\nt=wd+sd\nprint("".join(b[int(d)] for d in oct(t)[2:]))' "$WATER" "$STIR"
