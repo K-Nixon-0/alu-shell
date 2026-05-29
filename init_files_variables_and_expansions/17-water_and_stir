@@ -1,2 +1,2 @@
 #!/bin/bash
-printf "w='water'\ns='stir'\nb='bestchol'\nW=sum(w.index(c)*5**i for i,c in enumerate(reversed('%s')))\nS=sum(s.index(c)*4**i for i,c in enumerate(reversed('%s')))\nT=W+S\nprint(''.join(b[int(d)] for d in oct(T)[2:]))\n" "$WATER" "$STIR" | python3
+printf "w='water'\ns='stir'\nb='bestchol'\nW=sum(w.index(c)*5**i for i,c in enumerate('%s'[::-1]))\nS=sum(s.index(c)*4**i for i,c in enumerate('%s'[::-1]))\nT=W+S\nprint(''.join(b[int(d)] for d in oct(T)[2:]))\n" "$WATER" "$STIR" | python3
