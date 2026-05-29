@@ -1,2 +1,43 @@
 #!/bin/bash
-tr "0123456789abcdefghijklmnopqrstuvwxyz" "$bestchol" <<< $(( $(tr "$water" "0123456789abcdefghijklmnopqrstuvwxyz" <<< "$WATER") + $(tr "$stir" "0123456789abcdefghijklmnopqrstuvwxyz" <<< "$STIR") ))
+water_base="water"
+stir_base="stir"
+result_base="bestchol"
+
+# Convert WATER (base 'water') to decimal
+num=$WATER
+dec=0
+len=${#water_base}
+for ((i=0; i<${#num}; i++)); do
+    c="${num:$i:1}"
+    val=$(expr index "$water_base" "$c")
+    val=$((val - 1))
+    dec=$((dec * len + val))
+done
+water_dec=$dec
+
+# Convert STIR (base 'stir') to decimal
+num=$STIR
+dec=0
+len=${#stir_base}
+for ((i=0; i<${#num}; i++)); do
+    c="${num:$i:1}"
+    val=$(expr index "$stir_base" "$c")
+    val=$((val - 1))
+    dec=$((dec * len + val))
+done
+stir_dec=$dec
+
+# Add both decimals
+sum=$((water_dec + stir_dec))
+
+# Convert sum to base 'bestchol'
+result=""
+len=${#result_base}
+while [ $sum -gt 0 ]; do
+    remainder=$((sum % len))
+    result="${result_base:$remainder:1}$result"
+    sum=$((sum / len))
+done
+
+[ -z "$result" ] && result="${result_base:0:1}"
+echo "$result"
