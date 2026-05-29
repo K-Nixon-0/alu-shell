@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(( $(echo "$WATER" | tr "$water" "0123456789abcdefghijklmnopqrstuvwxyz") + $(echo "$STIR" | tr "$stir" "0123456789abcdefghijklmnopqrstuvwxyz") )) | tr "0123456789abcdefghijklmnopqrstuvwxyz" "$bestchol"
+tr "0123456789abcdefghijklmnopqrstuvwxyz" "$bestchol" <<< $(( $(tr "$water" "0123456789abcdefghijklmnopqrstuvwxyz" <<< "$WATER") + $(tr "$stir" "0123456789abcdefghijklmnopqrstuvwxyz" <<< "$STIR") ))
