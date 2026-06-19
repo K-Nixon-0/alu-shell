@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # This script groups log visitors by IP and HTTP status code using awk
 
-awk '{print $1, $9}' | sort | uniq -c | sort -nr
+awk '{print $1, $9}' | sort | uniq -c | sort -nr | awk '{print $1, $2, $3}'
