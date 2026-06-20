@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script groups log visitors by IP and HTTP status code from a provided log file
+# This script parses, counts, and sorts IP and HTTP status code combinations
 
 log_file="${1:-apache-access.log}"
-awk '{print $1, $9}' "$log_file" | sort | uniq -c | sort -nr
+awk '{print $1, $9}' "$log_file" | sort | uniq -c | sort -nr | awk '{print $1, $2, $3}'
