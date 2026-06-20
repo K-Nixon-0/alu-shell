@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# This script parses /etc/passwd using a while loop and internal field separator
+# This script parses /etc/passwd while satisfying shellcheck requirements
 
-while IFS=":" read -r username password uid gid info home shell
+while IFS=":" read -r username _ uid _ _ home _
 do
     echo "${username}:${uid}:${home}"
 done < /etc/passwd
